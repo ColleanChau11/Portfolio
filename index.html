@@ -420,16 +420,6 @@ figure a.sm.car{position:relative}
 figure a.sm.car::after{content:attr(data-n);position:absolute;right:10px;top:10px;padding:3px 8px 3px 26px;border-radius:99px;background:rgba(0,0,0,.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2'%3E%3Crect x='8' y='8' width='13' height='13' rx='2'/%3E%3Cpath d='M16 4H5a1 1 0 0 0-1 1v11'/%3E%3C/svg%3E") 7px 50%/14px no-repeat;color:#fff;font-size:.78rem;letter-spacing:.02em}
 .lb-v{display:block;width:auto;height:auto;max-width:min(92vw,480px);max-height:calc(100vh - 120px);background:#000;box-shadow:0 10px 40px rgba(0,0,0,.18);cursor:default}
 .lb-v[hidden]{display:none}
-/* samples: line draws + page turns green */
-:root{--gbg:#D5EEE0}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--gbg:#17261F}}
-:root[data-theme="dark"]{--gbg:#17261F}
-body{transition:background-color .7s var(--ease)}
-body.gr{background:var(--gbg)}
-#samples{position:relative}
-#samples::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--tx);transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease)}
-body.gr #samples::before{transform:scaleX(1)}
-@media(prefers-reduced-motion:reduce){body,#samples::before{transition:none}}
 </style>
 </head>
 <body>
@@ -744,6 +734,5 @@ var go=function(){setTimeout(start,500)};
 
 
 </script>
-<script>(function(){var sm=document.getElementById('samples');if(!sm||!('IntersectionObserver' in window))return;new IntersectionObserver(function(e){document.body.classList.toggle('gr',e[0].isIntersecting)},{rootMargin:'-40% 0px -40% 0px'}).observe(sm)})();</script>
 </body>
 </html>
