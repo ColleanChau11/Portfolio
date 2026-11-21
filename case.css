@@ -342,3 +342,6 @@ a:hover{text-decoration-color:var(--ac-d)!important;text-decoration-thickness:2p
 .crumbs [aria-current]{color:var(--tx)}
 
 .nav .nm{font-size:1.2rem;line-height:1}
+
+.strip:has(.ig[data-set]){grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));align-items:start}
+.ig[data-set]{min-width:0}
