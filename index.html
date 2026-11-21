@@ -363,6 +363,17 @@ a:hover{text-decoration-color:var(--ac-d)!important;text-decoration-thickness:2p
 .nav a[aria-current="page"]{text-decoration:underline;text-decoration-color:var(--ac-clv);text-decoration-thickness:2px;text-underline-offset:6px}
 .nav b a.home{display:inline-flex;align-items:center;gap:10px;color:var(--tx);cursor:pointer;line-height:1}
 figure a.sm{display:block;transition:transform .6s var(--ease)}figure:hover a.sm{transform:scale(.97)}figure a.sm img{display:block;width:100%;height:auto}
+.filters{align-items:center}
+.sc-nav{margin-left:auto;display:flex;align-items:center;gap:8px}
+.sc-nav[hidden]{display:none}
+.sc-hint{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);margin-right:4px}
+.filters .sc-nav button.arr{width:36px;height:36px;padding:0;border:1px solid var(--bd);border-radius:50%;display:grid;place-items:center;color:var(--tx);background:var(--bg);transition:background .25s,opacity .25s,border-color .25s}
+.filters .sc-nav button.arr:hover:not(:disabled){background:color-mix(in srgb,var(--ac) 55%,transparent);border-color:var(--ac)}
+.filters .sc-nav button.arr:disabled{opacity:.3;cursor:default}
+#grid.fade-r{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 72px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 72px),transparent)}
+#grid.fade-l{-webkit-mask-image:linear-gradient(to left,#000 calc(100% - 72px),transparent);mask-image:linear-gradient(to left,#000 calc(100% - 72px),transparent)}
+#grid.fade-l.fade-r{-webkit-mask-image:linear-gradient(to right,transparent,#000 72px,#000 calc(100% - 72px),transparent);mask-image:linear-gradient(to right,transparent,#000 72px,#000 calc(100% - 72px),transparent)}
+@media(max-width:520px){.sc-hint{display:none}.filters{gap:16px}}
 </style>
 </head>
 <body>
@@ -399,7 +410,7 @@ figure a.sm{display:block;transition:transform .6s var(--ease)}figure:hover a.sm
 
 <section id="samples">
 <h2><canvas class="pxi" data-text="content" role="img" aria-label="content"></canvas> samples</h2>
-<div class="filters" role="group" aria-label="Filter samples"><button data-k="all" aria-pressed="true">All</button><button data-k="video" aria-pressed="false">Video</button><button data-k="social" aria-pressed="false">Social</button><button data-k="print" aria-pressed="false">Print</button></div>
+<div class="filters" role="group" aria-label="Filter samples"><button data-k="all" aria-pressed="true">All</button><button data-k="video" aria-pressed="false">Video</button><button data-k="social" aria-pressed="false">Social</button><button data-k="print" aria-pressed="false">Print</button><span class="sc-nav" id="scnav"><span class="sc-hint">Scroll</span><button class="arr" type="button" data-d="-1" aria-label="Scroll samples left"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="arr" type="button" data-d="1" aria-label="Scroll samples right"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></span></div>
 <div id="grid"></div>
 </section>
 
@@ -506,10 +517,15 @@ var items=[
 {k:"print",img:"dots-sales-back.jpg",alt:"DOTS Connect sales one-pager, back: secure voting, engagement and meeting management features, plus a customer quote.",c:"DOTS Connect sales one-pager, back"}];
 var g=document.getElementById("grid");
 items.forEach(function(i){var f=document.createElement("figure");f.dataset.k=i.k;f.innerHTML=(i.img?'<a class="sm" href="'+i.img+'" target="_blank" rel="noopener"><img src="'+i.img+'" alt="'+i.alt+'" loading="lazy"></a>':'<div class="ph '+i.k+'">Add '+i.a+'</div>')+'<figcaption>'+i.c+'</figcaption>';g.appendChild(f)});
-var fb=document.querySelectorAll(".filters button");
+var fb=document.querySelectorAll(".filters button[data-k]");
 fb.forEach(function(b){b.onclick=function(){
 fb.forEach(function(x){x.setAttribute("aria-pressed",x===b)});
-g.querySelectorAll("figure").forEach(function(f){f.hidden=b.dataset.k!=="all"&&f.dataset.k!==b.dataset.k})}});
+g.querySelectorAll("figure").forEach(function(f){f.hidden=b.dataset.k!=="all"&&f.dataset.k!==b.dataset.k});g.scrollLeft=0;scUp()}});
+var scn=document.getElementById("scnav"),arrs=scn?scn.querySelectorAll(".arr"):[];
+function scUp(){var over=g.scrollWidth>g.clientWidth+4;if(scn)scn.hidden=!over;var l=g.scrollLeft>4,r=g.scrollLeft+g.clientWidth<g.scrollWidth-4;g.classList.toggle("fade-l",over&&l);g.classList.toggle("fade-r",over&&r);if(arrs.length){arrs[0].disabled=!l;arrs[1].disabled=!r}}
+g.addEventListener("scroll",scUp,{passive:true});addEventListener("resize",scUp);
+[].forEach.call(arrs,function(a){a.onclick=function(){var f=g.querySelector("figure:not([hidden])"),w=f?f.offsetWidth+18:300;g.scrollBy({left:(+a.dataset.d)*w,behavior:"smooth"})}});
+addEventListener("load",scUp);scUp();
 var tg=document.getElementById("theme");
 if(!root.dataset.theme)root.dataset.theme=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 function syncTg(){tg.setAttribute("aria-checked",root.dataset.theme==="dark")}
