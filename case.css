@@ -343,7 +343,7 @@ a:hover{text-decoration-color:var(--ac-d)!important;text-decoration-thickness:2p
 
 .nav .nm{font-size:1.2rem;line-height:1}
 
-.strip:has(.ig[data-set]){grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));align-items:start}
+.cs .dbody .strip:has(.ig[data-set]){grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));align-items:start}
 .ig[data-set]{min-width:0}
 
 .dbody h5{font-family:'Jost',system-ui,sans-serif;font-weight:500;font-size:clamp(1.15rem,2.2vw,1.35rem);margin:30px 0 8px;line-height:1.25}
