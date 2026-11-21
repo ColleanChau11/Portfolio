@@ -405,6 +405,12 @@ figure a.sm{cursor:zoom-in}
 .pin:hover .hv img:nth-child(3),.pin:focus-within .hv img:nth-child(3){transition-delay:calc(var(--hd) + .3s)}
 .pin:hover .hv img:nth-child(4),.pin:focus-within .hv img:nth-child(4){transition-delay:calc(var(--hd) + .45s)}}
 @media(prefers-reduced-motion:reduce){.pin .hv,.pin .hv img{transition:none!important}}
+figure a.sm.vid{position:relative}
+figure a.sm.vid::before{content:"";position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(255,255,255,.9) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6.5v11l9-5.5z' fill='%23111'/%3E%3C/svg%3E") 54% 50%/28px no-repeat;box-shadow:0 4px 18px rgba(0,0,0,.28);transition:transform .25s ease}
+figure:hover a.sm.vid::before{transform:scale(1.08)}
+figure a.sm.vid::after{content:attr(data-dur);position:absolute;right:10px;bottom:10px;padding:3px 8px;border-radius:99px;background:rgba(0,0,0,.6);color:#fff;font-size:.78rem;letter-spacing:.02em}
+.lb-v{display:block;width:auto;height:auto;max-width:min(92vw,480px);max-height:calc(100vh - 120px);background:#000;box-shadow:0 10px 40px rgba(0,0,0,.18);cursor:default}
+.lb-v[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -470,7 +476,7 @@ figure a.sm{cursor:zoom-in}
 <section id="run" aria-hidden="true"><div class="wrap"><canvas id="bun"></canvas></div></section>
 <footer>© 2026 Collean Chau</footer>
 </div>
-<div id="lb" class="lb" role="dialog" aria-modal="true" aria-label="Image viewer" hidden><button class="lb-x" type="button" aria-label="Close">×</button><button class="lb-a lb-p" type="button" aria-label="Previous"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="lb-a lb-n" type="button" aria-label="Next"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><div class="lb-s"><img alt=""><p class="lb-c"></p></div></div>
+<div id="lb" class="lb" role="dialog" aria-modal="true" aria-label="Image viewer" hidden><button class="lb-x" type="button" aria-label="Close">×</button><button class="lb-a lb-p" type="button" aria-label="Previous"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="lb-a lb-n" type="button" aria-label="Next"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><div class="lb-s"><video class="lb-v" controls playsinline preload="metadata" hidden></video><img alt=""><p class="lb-c"></p></div></div>
 <div id="drawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="dt" aria-hidden="true" inert><div class="bk"></div><div class="panel"><div class="dh"><p id="dt" class="dtitle"></p><button class="x" type="button" aria-label="Close"></button></div><div class="dbody"></div></div></div>
 <script>
 var rm=matchMedia("(prefers-reduced-motion: reduce)").matches,root=document.documentElement;
@@ -540,8 +546,11 @@ document.querySelectorAll(".pin button.open").forEach(function(b){b.onclick=func
 dr.querySelector(".x").onclick=closeDr;dr.querySelector(".bk").onclick=closeDr;
 addEventListener("keydown",function(e){if(e.key==="Escape"&&dr.classList.contains("on"))closeDr()});
 var items=[
-{k:"video",a:"video",c:"Raffle video with a community member"},
-{k:"video",a:"video",c:"Raffle video featuring the Jamii owner"},
+{k:"video",vid:"vid-raffle-promo.mp4",img:"vid-raffle-promo.jpg",dur:"0:10",alt:"Reel promoting the Jamii raffle: a plane on the runway, aerial views of the Montpellier region and a market, with captions asking what if a raffle ticket could take you somewhere unforgettable."},
+{k:"video",vid:"vid-indigenous-day.mp4",img:"vid-indigenous-day.jpg",dur:"0:10",alt:"Reel announcing National Indigenous Peoples Day on June 21, 6 to 8 PM at David Crombie Park, over footage of a gathering in the park."},
+{k:"video",vid:"vid-latin-dance.mp4",img:"vid-latin-dance.jpg",dur:"1:27",alt:"Reel for the Belonging Older Adults Latin Dance Movement Workshops: an instructor introduces herself, with clips of the workshop and highlighted captions."},
+{k:"video",vid:"vid-dabke.mp4",img:"vid-dabke.jpg",dur:"0:46",alt:"Reel with a dabke coach teaching and performing in the park, ending on a card saying dancing workshops resume in October with registration opening September 10."},
+{k:"video",vid:"vid-silk-painting.mp4",img:"vid-silk-painting.jpg",dur:"1:28",alt:"Reel for a silk painting workshop with Janice Garel, with a title card, clips of painted silk and the workshop, and the finished pieces."},
 {k:"social",a:"image",c:"Instagram post for an event"},
 {k:"social",a:"image",c:"LinkedIn post for Data on the Spot"},
 {k:"print",img:"wayo-poster.jpg",alt:"Poster for the 6th Annual WAYO Children’s Festival, Our Continents: a cartoon globe on an orange sky, with event dates, location and a ticket QR code.",c:"Poster for the 6th Annual WAYO Children’s Festival"},
@@ -554,7 +563,7 @@ var items=[
 {k:"copy",g:"b",img:"copy-joy.png",alt:"Instagram caption from Jamii Esplanade announcing the first Joy in the Park of the season, with the schedule of music, facepainting and stiltwalking, when and where it happens, that it is free, and sponsor credits.",c:"Instagram announcement for Jamii’s Joy in the Park"},
 {k:"copy",g:"b",img:"copy-clicker.png",alt:"LinkedIn post from Data On the Spot asking Clicker VS DOTS Connect: what is the right solution for you, explaining that the choice depends on event format, audience size and technical needs.",c:"LinkedIn post comparing clickers with DOTS Connect"}];
 var g=document.getElementById("grid");
-var stk=null;items.forEach(function(i){var f=document.createElement("figure");f.dataset.k=i.k;f.innerHTML=(i.img?'<a class="sm" href="'+i.img+'" target="_blank" rel="noopener"><img src="'+i.img+'" alt="'+i.alt+'" loading="lazy"></a>':'<div class="ph '+i.k+'">Add '+i.a+'</div>')+(i.img?'':'<figcaption>'+i.c+'</figcaption>');if(i.g){if(!stk||stk.dataset.g!==i.g){stk=document.createElement("div");stk.className="stk";stk.dataset.g=i.g;g.appendChild(stk)}stk.appendChild(f)}else{stk=null;g.appendChild(f)}});
+var stk=null;items.forEach(function(i){var f=document.createElement("figure");f.dataset.k=i.k;f.innerHTML=(i.img?'<a class="sm'+(i.vid?' vid':'')+'" href="'+(i.vid||i.img)+'"'+(i.vid?' data-vid="'+i.vid+'" data-dur="'+i.dur+'" aria-label="Play video"':'')+' target="_blank" rel="noopener"><img src="'+i.img+'" alt="'+i.alt+'" loading="lazy"></a>':'<div class="ph '+i.k+'">Add '+i.a+'</div>')+(i.img?'':'<figcaption>'+i.c+'</figcaption>');if(i.g){if(!stk||stk.dataset.g!==i.g){stk=document.createElement("div");stk.className="stk";stk.dataset.g=i.g;g.appendChild(stk)}stk.appendChild(f)}else{stk=null;g.appendChild(f)}});
 var fb=document.querySelectorAll(".filters button[data-k]");
 fb.forEach(function(b){b.onclick=function(){
 fb.forEach(function(x){x.setAttribute("aria-pressed",x===b)});
@@ -564,10 +573,10 @@ function scUp(){var over=g.scrollWidth>g.clientWidth+4;if(scn)scn.hidden=!over;v
 g.addEventListener("scroll",scUp,{passive:true});addEventListener("resize",scUp);
 [].forEach.call(arrs,function(a){a.onclick=function(){var f=g.querySelector("figure:not([hidden])"),w=f?f.offsetWidth+18:300;g.scrollBy({left:(+a.dataset.d)*w,behavior:"smooth"})}});
 addEventListener("load",scUp);scUp();
-(function(){var lb=document.getElementById("lb");if(!lb)return;var im=lb.querySelector("img"),cp=lb.querySelector(".lb-c"),bp=lb.querySelector(".lb-p"),bn=lb.querySelector(".lb-n"),bx=lb.querySelector(".lb-x"),list=[],cur=-1,last=null;
-function show(i){cur=i;var a=list[i],m=a.querySelector("img");im.src=a.getAttribute("href");im.alt=m?m.alt:"";var f=a.closest("figure"),c=f&&f.querySelector("figcaption");cp.textContent=c?c.textContent:"";cp.hidden=!cp.textContent;bp.hidden=bn.hidden=list.length<2;lb.scrollTop=0}
+(function(){var lb=document.getElementById("lb");if(!lb)return;var im=lb.querySelector("img"),cp=lb.querySelector(".lb-c"),vd=lb.querySelector(".lb-v"),bp=lb.querySelector(".lb-p"),bn=lb.querySelector(".lb-n"),bx=lb.querySelector(".lb-x"),list=[],cur=-1,last=null;
+function show(i){cur=i;var a=list[i],m=a.querySelector("img");vd.pause();if(a.dataset.vid){im.hidden=true;im.removeAttribute("src");vd.hidden=false;vd.poster=m?m.getAttribute("src"):"";vd.src=a.dataset.vid;vd.setAttribute("aria-label",m?m.alt:"Video");vd.play&&vd.play().catch(function(){})}else{vd.hidden=true;vd.removeAttribute("src");im.hidden=false;im.src=a.getAttribute("href");im.alt=m?m.alt:""}var f=a.closest("figure"),c=f&&f.querySelector("figcaption");cp.textContent=c?c.textContent:"";cp.hidden=!cp.textContent;bp.hidden=bn.hidden=list.length<2;lb.scrollTop=0}
 function open(a){list=[].slice.call(document.querySelectorAll("#grid figure:not([hidden]) a.sm"));var i=list.indexOf(a);if(i<0){list=[a];i=0}last=a;show(i);lb.hidden=false;document.documentElement.classList.add("lb-open");bx.focus()}
-function close(){lb.hidden=true;document.documentElement.classList.remove("lb-open");im.removeAttribute("src");if(last)last.focus()}
+function close(){lb.hidden=true;document.documentElement.classList.remove("lb-open");im.removeAttribute("src");vd.pause();vd.removeAttribute("src");vd.load();if(last)last.focus()}
 function step(d){if(list.length>1)show((cur+d+list.length)%list.length)}
 document.getElementById("grid").addEventListener("click",function(e){var a=e.target.closest("a.sm");if(!a)return;e.preventDefault();open(a)});
 bx.onclick=close;bp.onclick=function(e){e.stopPropagation();step(-1)};bn.onclick=function(e){e.stopPropagation();step(1)};
