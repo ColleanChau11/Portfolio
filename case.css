@@ -326,7 +326,7 @@ a:hover{text-decoration-color:var(--ac-d)!important;text-decoration-thickness:2p
 .dbody h4{scroll-margin-top:110px}
 .toc{display:none}
 @media(min-width:1100px){
-.toc{display:block;position:fixed;top:140px;left:calc(50% + 330px);width:176px;padding:14px 14px 12px;border-radius:14px;background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid var(--bd);box-shadow:0 6px 22px rgba(0,0,0,.07);z-index:60;opacity:0;transform:translateY(6px);pointer-events:none;transition:opacity .35s,transform .35s}
+.toc{display:block;position:fixed;top:140px;left:calc(50% + 330px);width:176px;padding:14px 14px 12px;border-radius:14px;background:color-mix(in srgb,var(--bg) 72%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);z-index:60;opacity:0;transform:translateY(6px);pointer-events:none;transition:opacity .35s,transform .35s}
 .toc.show{opacity:1;transform:none;pointer-events:auto}
 .toc-t{margin:0 0 8px;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mu)}
 .toc ul{list-style:none;margin:0;padding:0 0 0 10px;border-left:1px solid var(--bd);display:flex;flex-direction:column;gap:5px}
