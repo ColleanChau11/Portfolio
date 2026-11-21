@@ -363,6 +363,8 @@ a:hover{text-decoration-color:var(--ac-d)!important;text-decoration-thickness:2p
 .nav a[aria-current="page"]{text-decoration:underline;text-decoration-color:var(--ac-clv);text-decoration-thickness:2px;text-underline-offset:6px}
 #about{padding-top:clamp(36px,6vw,72px)}
 .nav b a.home{display:inline-flex;align-items:center;gap:10px;color:var(--tx);cursor:pointer;line-height:1}
+.me-photo{aspect-ratio:4/5;width:100%;max-width:420px;justify-self:end;border-radius:0}
+@media(max-width:760px){.me-photo{justify-self:start;max-width:100%;aspect-ratio:1/1}}
 </style>
 </head>
 <body>
@@ -389,7 +391,7 @@ a:hover{text-decoration-color:var(--ac-d)!important;text-decoration-thickness:2p
 <p>I like work where one clear piece of content changes what someone does next: buying a ticket, signing up, or finishing a task without help.</p>
 <p>I use ChatGPT, Canva AI and Google AI Studio for first drafts, repurposing and voice-overs, then edit everything for the brand’s voice.</p>
 </div>
-<ul class="tools"><li>Canva</li><li>Adobe Creative Suite</li><li>Figma</li><li>Mailchimp</li><li>CapCut</li><li>HTML and CSS</li><li>Framer and Wix</li><li>Google Workspace</li><li>Microsoft Office</li></ul>
+<div class="ph me-photo" role="img" aria-label="Photo of Collean">Add: photo of you</div>
 </div>
 </section>
 <section id="career">
