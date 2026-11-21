@@ -420,6 +420,7 @@ figure a.sm.car{position:relative}
 figure a.sm.car::after{content:attr(data-n);position:absolute;right:10px;top:10px;padding:3px 8px 3px 26px;border-radius:99px;background:rgba(0,0,0,.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2'%3E%3Crect x='8' y='8' width='13' height='13' rx='2'/%3E%3Cpath d='M16 4H5a1 1 0 0 0-1 1v11'/%3E%3C/svg%3E") 7px 50%/14px no-repeat;color:#fff;font-size:.78rem;letter-spacing:.02em}
 .lb-v{display:block;width:auto;height:auto;max-width:min(92vw,480px);max-height:calc(100vh - 120px);background:#000;box-shadow:0 10px 40px rgba(0,0,0,.18);cursor:default}
 .lb-v[hidden]{display:none}
+#work,#samples,#why,#contact{scroll-margin-top:calc(20px - clamp(80px,13vw,150px))}
 </style>
 </head>
 <body>
@@ -608,7 +609,7 @@ tg.onclick=function(){root.dataset.theme=root.dataset.theme==="dark"?"light":"da
 var nv=document.querySelector(".nav");function st(){nv.classList.toggle("stuck",scrollY>8)}addEventListener("scroll",st,{passive:true});st();
 
 (function(){var rm2=matchMedia("(prefers-reduced-motion:reduce)").matches;function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
-var b=document.getElementById("seework");if(b)b.addEventListener("click",function(e){e.preventDefault();var t=document.getElementById("work"),to=t.getBoundingClientRect().top+scrollY-84;if(rm2){scrollTo(0,to);return}var from=scrollY,d=to-from,dur=Math.min(1800,800+Math.abs(d)*.7),st=null;function step(ts){if(st===null)st=ts;var p=Math.min(1,(ts-st)/dur);scrollTo(0,from+d*ease(p));if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)})})();
+var b=document.getElementById("seework");if(b)b.addEventListener("click",function(e){e.preventDefault();var t=document.querySelector("#work h2")||document.getElementById("work"),to=t.getBoundingClientRect().top+scrollY-100;if(rm2){scrollTo(0,to);return}var from=scrollY,d=to-from,dur=Math.min(1800,800+Math.abs(d)*.7),st=null;function step(ts){if(st===null)st=ts;var p=Math.min(1,(ts-st)/dur);scrollTo(0,from+d*ease(p));if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)})})();
 
 (function(){var box=document.getElementById("asts");if(!box)return;var cv=document.createElement("canvas");cv.className="pxa";box.appendChild(cv);
 var rmq=matchMedia("(prefers-reduced-motion:reduce)").matches,PS=2,R=3.6,H=10,mc=document.createElement("canvas"),W=0,N=0,col="#111",last=0;
