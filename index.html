@@ -501,7 +501,9 @@ var items=[
 {k:"social",a:"image",c:"Instagram post for an event"},
 {k:"social",a:"image",c:"LinkedIn post for Data on the Spot"},
 {k:"print",img:"wayo-poster.jpg",alt:"Poster for the 6th Annual WAYO Children’s Festival, Our Continents: a cartoon globe on an orange sky, with event dates, location and a ticket QR code.",c:"Poster for the 6th Annual WAYO Children’s Festival"},
-{k:"print",a:"image",c:"Brochure or event collateral"}];
+{k:"print",img:"dots-support.jpg",alt:"DOTS Connect Support Services sheet comparing the Remote and In-Person Election Manager options in a table, with a QR code to get started.",c:"DOTS Connect support services comparison sheet"},
+{k:"print",img:"dots-sales-front.jpg",alt:"DOTS Connect sales one-pager, front: platform overview with two phone screens, key features and logos of organizations that trust it.",c:"DOTS Connect sales one-pager, front"},
+{k:"print",img:"dots-sales-back.jpg",alt:"DOTS Connect sales one-pager, back: secure voting, engagement and meeting management features, plus a customer quote.",c:"DOTS Connect sales one-pager, back"}];
 var g=document.getElementById("grid");
 items.forEach(function(i){var f=document.createElement("figure");f.dataset.k=i.k;f.innerHTML=(i.img?'<a class="sm" href="'+i.img+'" target="_blank" rel="noopener"><img src="'+i.img+'" alt="'+i.alt+'" loading="lazy"></a>':'<div class="ph '+i.k+'">Add '+i.a+'</div>')+'<figcaption>'+i.c+'</figcaption>';g.appendChild(f)});
 var fb=document.querySelectorAll(".filters button");
