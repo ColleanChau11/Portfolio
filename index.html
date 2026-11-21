@@ -395,6 +395,16 @@ figure a.sm{cursor:zoom-in}
 @media(max-width:760px){#grid .stk{flex-basis:72vw}}
 #grid figure:has(>a.sm){margin:0;display:flex;flex-direction:column}
 #grid figure[data-k="copy"]>a.sm{flex:1;background:#fff}
+.pin .img-ban{position:relative}
+.pin .hv{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px;background:var(--bg);opacity:0;pointer-events:none;transition:opacity .35s var(--ease,ease)}
+.pin .hv img{width:100%!important;height:100%!important;object-fit:cover;display:block;min-width:0;min-height:0;opacity:0;transform:scale(1.06);transition:opacity .4s var(--ease,ease),transform .6s var(--ease,ease)}
+@media(hover:hover){
+.pin:hover .hv,.pin:focus-within .hv{opacity:1}
+.pin:hover .hv img,.pin:focus-within .hv img{opacity:1;transform:none}
+.pin:hover .hv img:nth-child(2),.pin:focus-within .hv img:nth-child(2){transition-delay:.06s}
+.pin:hover .hv img:nth-child(3),.pin:focus-within .hv img:nth-child(3){transition-delay:.12s}
+.pin:hover .hv img:nth-child(4),.pin:focus-within .hv img:nth-child(4){transition-delay:.18s}}
+@media(prefers-reduced-motion:reduce){.pin .hv,.pin .hv img{transition:none}}
 </style>
 </head>
 <body>
@@ -416,7 +426,7 @@ figure a.sm{cursor:zoom-in}
 <section id="work">
 <h2><canvas class="pxi" data-text="case studies" role="img" aria-label="case studies"></canvas></h2>
 <ul class="pins">
-<li class="pin"><div class="img img-ban" style="--bgc:#DDE8E1"><img src="raffle-cover.jpg" alt="Win a trip to France: Jamii’s fundraising raffle. Two women taking a selfie in Montpellier." loading="lazy"></div><div class="pt"><p class="tag">Jamii</p><h3><a class="open" href="raffle.html">The Jamii Raffle campaign: $20,575 raised</a></h3><p class="cd">A six-week, video-led raffle that beat its $14,000 goal by about 47%.</p></div></li>
+<li class="pin"><div class="img img-ban" style="--bgc:#DDE8E1"><img src="raffle-cover.jpg" alt="Win a trip to France: Jamii’s fundraising raffle. Two women taking a selfie in Montpellier." loading="lazy"><div class="hv" aria-hidden="true"><img src="raffle-hv1.jpg" alt="" loading="lazy"><img src="raffle-hv2.jpg" alt="" loading="lazy"><img src="raffle-hv3.jpg" alt="" loading="lazy"><img src="raffle-hv4.jpg" alt="" loading="lazy"></div></div><div class="pt"><p class="tag">Jamii</p><h3><a class="open" href="raffle.html">The Jamii Raffle campaign: $20,575 raised</a></h3><p class="cd">A six-week, video-led raffle that beat its $14,000 goal by about 47%.</p></div></li>
 <li class="pin"><div class="img" style="--bgc:#DCE5EE"><span>Add: event photo or graphic</span></div><div class="pt"><p class="tag">#jamii</p><h3><a class="open" href="jamii.html">Marketing at Jamii Esplanade</a></h3><p class="cd">Events, video, social and web for a Toronto community arts organisation.</p></div></li>
 <li class="pin"><div class="img" style="--bgc:#E3DFEA"><span>Add: guidelines cover</span></div><div class="pt"><p class="tag">#brand</p><h3><a class="open" href="brand-guidelines.html">Brand guidelines</a></h3><p class="cd">One shared place for the logo, colours, fonts and message.</p></div></li>
 <li class="pin"><div class="img" style="--bgc:#E9DFD4"><span>Add: guide book cover</span></div><div class="pt"><p class="tag">#guidebooks</p><h3><a class="open" href="guidebooks.html">Guide books for the voting software</a></h3><p class="cd">Step-by-step help for people who aren’t technical.</p></div></li>
