@@ -339,6 +339,21 @@ a:hover{text-decoration-color:var(--ac-d)!important;text-decoration-thickness:2p
 @media(max-width:520px){.pins{gap:22px 14px!important}.pin .open{font-size:1.02rem!important}.pin .cd{font-size:.82rem;margin-top:8px;line-height:1.45}.pin .tag{font-size:.8rem}}
 .pin .img-ban{display:grid;place-items:center;background:var(--bgc);padding:0!important}.pin .img-ban img{display:block;width:100%;height:100%;object-fit:cover}
 .pins .pin .img{aspect-ratio:1/1!important}
+
+/* why me + core skills */
+#why .why-lead{font-family:'Jost',system-ui,sans-serif;font-size:clamp(1.5rem,3.4vw,2.2rem);line-height:1.2;letter-spacing:-.02em;margin:0 0 28px;max-width:20em}
+.why-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:22px 28px}
+.why-grid li{border-top:1px solid var(--bd);padding-top:14px}
+.why-grid b{display:block;font-family:'Jost',system-ui,sans-serif;font-weight:500;font-size:1.15rem;margin-bottom:6px}
+.why-grid span{color:var(--mu);font-size:.98rem;line-height:1.5}
+.sk-list{border-top:1px solid var(--bd)}
+.sk{border-bottom:1px solid var(--bd)}
+.sk summary{display:flex;justify-content:space-between;align-items:center;gap:16px;cursor:pointer;list-style:none;padding:18px 2px;font-family:'Jost',system-ui,sans-serif;font-size:1.2rem;font-weight:500}
+.sk summary::-webkit-details-marker{display:none}
+.sk summary::after{content:"+";font-size:1.6rem;font-weight:300;color:var(--mu);transition:transform .25s}
+.sk[open] summary::after{transform:rotate(45deg)}
+.sk p{margin:0 0 18px;max-width:46em;color:var(--mu);line-height:1.55}
+.sk p a{color:inherit}
 </style>
 </head>
 <body>
@@ -387,6 +402,30 @@ a:hover{text-decoration-color:var(--ac-d)!important;text-decoration-thickness:2p
 <li><span class="cd8">Jan – Jul 2025</span><div><h3>UX/UI Designer</h3><p class="co">Youth Empowering Parents</p></div></li>
 <li><span class="cd8">Sept 2022 – Apr 2025</span><div><h3>Interaction Design, Advanced Diploma</h3><p class="co">George Brown College</p><p>GPA 3.9 / 4.0, Dean’s List 2022 – 2025.</p></div></li>
 </ol>
+</section>
+
+<section id="why">
+<h2>why <canvas class="pxi" data-text="me" role="img" aria-label="me"></canvas></h2>
+<p class="why-lead">I make content that gets people to act.</p>
+<ul class="why-grid">
+<li><b>Results-minded</b><span>The Jamii raffle beat its $14,000 goal by about 47%, raising $20,575.</span></li>
+<li><b>Video-first</b><span>I film, edit and caption my own reels, from teasers to founder spotlights.</span></li>
+<li><b>Design and UX thinking</b><span>Interaction Design training means I check that content is easy to follow and act on.</span></li>
+<li><b>Works across channels</b><span>Social, print and in-person promotion, planned together with a team.</span></li>
+</ul>
+</section>
+
+<section id="skills">
+<h2>core <canvas class="pxi" data-text="skills" role="img" aria-label="skills"></canvas></h2>
+<div class="sk-list">
+<details class="sk"><summary>Social media management</summary><p>Planned, posted and tracked Instagram and Facebook content for Jamii. Instagram reached 22,018 accounts (May 15 – Jul 12), with 48% of views from people who don’t follow the account.</p></details>
+<details class="sk"><summary>Short-form video</summary><p>Filmed and edited reels in CapCut: community spotlights, founder spotlights, scenic promos and a sneak-peek teaser. <a href="raffle.html">See the raffle case study</a>.</p></details>
+<details class="sk"><summary>Content creation and copywriting</summary><p>Captions, posts and graphics, drafted with AI and edited for the brand’s voice. One piece of content repurposed into several formats.</p></details>
+<details class="sk"><summary>Graphic design and branding</summary><p>Brand guidelines and guide books for a voting-software company, plus graphics in Adobe Creative Suite, Canva and Figma.</p></details>
+<details class="sk"><summary>Campaign coordination</summary><p>Planned the raffle across social, print and in-person promotion with my manager: flyers, ticket tables and announcements at workshops and outdoor events.</p></details>
+<details class="sk"><summary>Website updates and maintenance</summary><p>Built and updated web pages at Jamii. Working knowledge of Wix and Framer.</p></details>
+<details class="sk"><summary>UX/UI research and design</summary><p>Advanced Diploma in Interaction Design (GPA 3.9) and a UX/UI Designer role at Youth Empowering Parents.</p></details>
+</div>
 </section>
 
 <section id="about">
