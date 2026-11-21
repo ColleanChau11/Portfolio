@@ -378,6 +378,7 @@ figure a.sm{display:block;transition:transform .6s var(--ease)}figure:hover a.sm
 .lb[hidden]{display:none}
 .lb-s{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:72px 16px 40px}
 .lb-s img{display:block;width:min(92vw,900px);height:auto;box-shadow:0 10px 40px rgba(0,0,0,.18);cursor:default;background:var(--sf)}
+.lb-c[hidden]{display:none}
 .lb-c{margin:6px 0 0;color:var(--tx);font-family:'Jost',system-ui,sans-serif;font-size:1.2rem;font-weight:500;text-align:left;width:min(92vw,900px)}
 .lb button{position:fixed;z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid var(--bd);background:var(--bg);color:var(--tx);display:grid;place-items:center;cursor:pointer;font:inherit;font-size:1.7rem;line-height:1;padding:0;transition:background .25s,border-color .25s}
 .lb button:hover{background:color-mix(in srgb,var(--ac) 55%,transparent);border-color:var(--ac)}
@@ -540,7 +541,7 @@ var items=[
 {k:"copy",g:"b",img:"copy-joy.png",alt:"Instagram caption from Jamii Esplanade announcing the first Joy in the Park of the season, with the schedule of music, facepainting and stiltwalking, when and where it happens, that it is free, and sponsor credits.",c:"Instagram announcement for Jamii’s Joy in the Park"},
 {k:"copy",g:"b",img:"copy-clicker.png",alt:"LinkedIn post from Data On the Spot asking Clicker VS DOTS Connect: what is the right solution for you, explaining that the choice depends on event format, audience size and technical needs.",c:"LinkedIn post comparing clickers with DOTS Connect"}];
 var g=document.getElementById("grid");
-var stk=null;items.forEach(function(i){var f=document.createElement("figure");f.dataset.k=i.k;f.innerHTML=(i.img?'<a class="sm" href="'+i.img+'" target="_blank" rel="noopener"><img src="'+i.img+'" alt="'+i.alt+'" loading="lazy"></a>':'<div class="ph '+i.k+'">Add '+i.a+'</div>')+'<figcaption>'+i.c+'</figcaption>';if(i.g){if(!stk||stk.dataset.g!==i.g){stk=document.createElement("div");stk.className="stk";stk.dataset.g=i.g;g.appendChild(stk)}stk.appendChild(f)}else{stk=null;g.appendChild(f)}});
+var stk=null;items.forEach(function(i){var f=document.createElement("figure");f.dataset.k=i.k;f.innerHTML=(i.img?'<a class="sm" href="'+i.img+'" target="_blank" rel="noopener"><img src="'+i.img+'" alt="'+i.alt+'" loading="lazy"></a>':'<div class="ph '+i.k+'">Add '+i.a+'</div>')+(i.img?'':'<figcaption>'+i.c+'</figcaption>');if(i.g){if(!stk||stk.dataset.g!==i.g){stk=document.createElement("div");stk.className="stk";stk.dataset.g=i.g;g.appendChild(stk)}stk.appendChild(f)}else{stk=null;g.appendChild(f)}});
 var fb=document.querySelectorAll(".filters button[data-k]");
 fb.forEach(function(b){b.onclick=function(){
 fb.forEach(function(x){x.setAttribute("aria-pressed",x===b)});
@@ -551,7 +552,7 @@ g.addEventListener("scroll",scUp,{passive:true});addEventListener("resize",scUp)
 [].forEach.call(arrs,function(a){a.onclick=function(){var f=g.querySelector("figure:not([hidden])"),w=f?f.offsetWidth+18:300;g.scrollBy({left:(+a.dataset.d)*w,behavior:"smooth"})}});
 addEventListener("load",scUp);scUp();
 (function(){var lb=document.getElementById("lb");if(!lb)return;var im=lb.querySelector("img"),cp=lb.querySelector(".lb-c"),bp=lb.querySelector(".lb-p"),bn=lb.querySelector(".lb-n"),bx=lb.querySelector(".lb-x"),list=[],cur=-1,last=null;
-function show(i){cur=i;var a=list[i],m=a.querySelector("img");im.src=a.getAttribute("href");im.alt=m?m.alt:"";var f=a.closest("figure"),c=f&&f.querySelector("figcaption");cp.textContent=c?c.textContent:"";bp.hidden=bn.hidden=list.length<2;lb.scrollTop=0}
+function show(i){cur=i;var a=list[i],m=a.querySelector("img");im.src=a.getAttribute("href");im.alt=m?m.alt:"";var f=a.closest("figure"),c=f&&f.querySelector("figcaption");cp.textContent=c?c.textContent:"";cp.hidden=!cp.textContent;bp.hidden=bn.hidden=list.length<2;lb.scrollTop=0}
 function open(a){list=[].slice.call(document.querySelectorAll("#grid figure:not([hidden]) a.sm"));var i=list.indexOf(a);if(i<0){list=[a];i=0}last=a;show(i);lb.hidden=false;document.documentElement.classList.add("lb-open");bx.focus()}
 function close(){lb.hidden=true;document.documentElement.classList.remove("lb-open");im.removeAttribute("src");if(last)last.focus()}
 function step(d){if(list.length>1)show((cur+d+list.length)%list.length)}
