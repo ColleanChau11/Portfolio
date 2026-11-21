@@ -386,6 +386,11 @@ figure a.sm{display:block;transition:transform .6s var(--ease)}figure:hover a.sm
 @media(max-width:700px){.lb-p,.lb-n{top:auto;bottom:16px;margin:0}.lb-p{left:calc(50% - 54px)}.lb-n{right:calc(50% - 54px)}.lb-s{padding-bottom:84px}}
 html.lb-open{overflow:hidden}
 figure a.sm{cursor:zoom-in}
+#grid .stk{flex:0 0 clamp(220px,28vw,320px);scroll-snap-align:start;min-width:0;display:flex;flex-direction:column}
+#grid .stk figure{flex:none;width:100%;margin:0 0 40px}
+#grid .stk[hidden]{display:none!important}
+#grid .stk figure:last-child{margin-bottom:0}
+@media(max-width:760px){#grid .stk{flex-basis:72vw}}
 </style>
 </head>
 <body>
@@ -525,21 +530,21 @@ var items=[
 {k:"video",a:"video",c:"Raffle video featuring the Jamii owner"},
 {k:"social",a:"image",c:"Instagram post for an event"},
 {k:"social",a:"image",c:"LinkedIn post for Data on the Spot"},
-{k:"copy",img:"copy-votes.png",alt:"LinkedIn post from Data On the Spot titled 1,200 Secure Votes. Under 60 Seconds. Two Major Events. One Incredible Team. It describes supporting the OPSEU/SEFPO BPS Conference and the OFL Convention 2025, where nearly 1,200 secure votes were processed in under a minute, and thanks both organizations.",c:"LinkedIn post celebrating two back-to-back client events"},
-{k:"copy",img:"copy-birthday.png",alt:"Instagram caption from Jamii Esplanade promoting Art Birthday Parties at The Jamii Hub: activities to choose from, staff support from set up to clean up, a guided creative activity and a free photo booth with printed photos, with the location and a booking link in the bio.",c:"Instagram post promoting Art Birthday Parties at The Jamii Hub"},
+{k:"copy",g:"a",img:"copy-votes.png",alt:"LinkedIn post from Data On the Spot titled 1,200 Secure Votes. Under 60 Seconds. Two Major Events. One Incredible Team. It describes supporting the OPSEU/SEFPO BPS Conference and the OFL Convention 2025, where nearly 1,200 secure votes were processed in under a minute, and thanks both organizations.",c:"LinkedIn post celebrating two back-to-back client events"},
+{k:"copy",g:"a",img:"copy-birthday.png",alt:"Instagram caption from Jamii Esplanade promoting Art Birthday Parties at The Jamii Hub: activities to choose from, staff support from set up to clean up, a guided creative activity and a free photo booth with printed photos, with the location and a booking link in the bio.",c:"Instagram post promoting Art Birthday Parties at The Jamii Hub"},
 {k:"copy",img:"copy-coffee.png",alt:"Instagram caption from Jamii Esplanade recapping The Jamii Coffee, Gabena, a ceremonial Ethiopian and Sudanese coffee gathering led by Muna Elbadri, with a note that it returns in September, when registration opens, and sponsor credits.",c:"Instagram recap of The Jamii Coffee ceremony"},
-{k:"copy",img:"copy-joy.png",alt:"Instagram caption from Jamii Esplanade announcing the first Joy in the Park of the season, with the schedule of music, facepainting and stiltwalking, when and where it happens, that it is free, and sponsor credits.",c:"Instagram announcement for Jamii’s Joy in the Park"},
-{k:"copy",img:"copy-clicker.png",alt:"LinkedIn post from Data On the Spot asking Clicker VS DOTS Connect: what is the right solution for you, explaining that the choice depends on event format, audience size and technical needs.",c:"LinkedIn post comparing clickers with DOTS Connect"},
+{k:"copy",g:"b",img:"copy-joy.png",alt:"Instagram caption from Jamii Esplanade announcing the first Joy in the Park of the season, with the schedule of music, facepainting and stiltwalking, when and where it happens, that it is free, and sponsor credits.",c:"Instagram announcement for Jamii’s Joy in the Park"},
+{k:"copy",g:"b",img:"copy-clicker.png",alt:"LinkedIn post from Data On the Spot asking Clicker VS DOTS Connect: what is the right solution for you, explaining that the choice depends on event format, audience size and technical needs.",c:"LinkedIn post comparing clickers with DOTS Connect"},
 {k:"print",img:"wayo-poster.jpg",alt:"Poster for the 6th Annual WAYO Children’s Festival, Our Continents: a cartoon globe on an orange sky, with event dates, location and a ticket QR code.",c:"Poster for the 6th Annual WAYO Children’s Festival"},
 {k:"print",img:"dots-support.jpg",alt:"DOTS Connect Support Services sheet comparing the Remote and In-Person Election Manager options in a table, with a QR code to get started.",c:"DOTS Connect support services comparison sheet"},
 {k:"print",img:"dots-sales-front.jpg",alt:"DOTS Connect sales one-pager, front: platform overview with two phone screens, key features and logos of organizations that trust it.",c:"DOTS Connect sales one-pager, front"},
 {k:"print",img:"dots-sales-back.jpg",alt:"DOTS Connect sales one-pager, back: secure voting, engagement and meeting management features, plus a customer quote.",c:"DOTS Connect sales one-pager, back"}];
 var g=document.getElementById("grid");
-items.forEach(function(i){var f=document.createElement("figure");f.dataset.k=i.k;f.innerHTML=(i.img?'<a class="sm" href="'+i.img+'" target="_blank" rel="noopener"><img src="'+i.img+'" alt="'+i.alt+'" loading="lazy"></a>':'<div class="ph '+i.k+'">Add '+i.a+'</div>')+'<figcaption>'+i.c+'</figcaption>';g.appendChild(f)});
+var stk=null;items.forEach(function(i){var f=document.createElement("figure");f.dataset.k=i.k;f.innerHTML=(i.img?'<a class="sm" href="'+i.img+'" target="_blank" rel="noopener"><img src="'+i.img+'" alt="'+i.alt+'" loading="lazy"></a>':'<div class="ph '+i.k+'">Add '+i.a+'</div>')+'<figcaption>'+i.c+'</figcaption>';if(i.g){if(!stk||stk.dataset.g!==i.g){stk=document.createElement("div");stk.className="stk";stk.dataset.g=i.g;g.appendChild(stk)}stk.appendChild(f)}else{stk=null;g.appendChild(f)}});
 var fb=document.querySelectorAll(".filters button[data-k]");
 fb.forEach(function(b){b.onclick=function(){
 fb.forEach(function(x){x.setAttribute("aria-pressed",x===b)});
-g.querySelectorAll("figure").forEach(function(f){f.hidden=b.dataset.k!=="all"&&f.dataset.k!==b.dataset.k});g.scrollLeft=0;scUp()}});
+g.querySelectorAll("figure").forEach(function(f){f.hidden=b.dataset.k!=="all"&&f.dataset.k!==b.dataset.k});g.querySelectorAll(".stk").forEach(function(x){x.hidden=!x.querySelector("figure:not([hidden])")});g.scrollLeft=0;scUp()}});
 var scn=document.getElementById("scnav"),arrs=scn?scn.querySelectorAll(".arr"):[];
 function scUp(){var over=g.scrollWidth>g.clientWidth+4;if(scn)scn.hidden=!over;var l=g.scrollLeft>4,r=g.scrollLeft+g.clientWidth<g.scrollWidth-4;g.classList.toggle("fade-l",over&&l);g.classList.toggle("fade-r",over&&r);if(arrs.length){arrs[0].disabled=!l;arrs[1].disabled=!r}}
 g.addEventListener("scroll",scUp,{passive:true});addEventListener("resize",scUp);
